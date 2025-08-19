@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transaction Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Transaction Tracker</h1>
+        
+        <div class="tabs">
+            <button class="tab-button active" onclick="showTab('pick')">Pick</button>
+            <button class="tab-button" onclick="showTab('pack')">Pack</button>
+            <button class="tab-button" onclick="showTab('replan')">Replan</button>
+            <button class="tab-button" onclick="showTab('returns')">Returns</button>
+            <button class="tab-button" onclick="showTab('names')">Names</button>
+        </div>
+
+        <div class="tab-content" id="pick" style="display: block;">
+            <h2>Pick Transactions (Target: 100+)</h2>
+            <input type="file" id="pickFile" accept=".csv" multiple>
+            <button onclick="processFile('pick')">Process</button>
+            <button onclick="exportImage('pick')" disabled id="exportPick">Export</button>
+            <button onclick="copyTable('pick')" disabled id="copyPick">Copy Table</button>
+            <div id="pickResult"></div>
+        </div>
+
+        <div class="tab-content" id="pack" style="display: none;">
+            <h2>Pack Transactions (Target: 150+)</h2>
+            <input type="file" id="packFile" accept=".csv" multiple>
+            <button onclick="processFile('pack')">Process</button>
+            <button onclick="exportImage('pack')" disabled id="exportPack">Export</button>
+            <button onclick="copyTable('pack')" disabled id="copyPack">Copy Table</button>
+            <div id="packResult"></div>
+        </div>
+
+        <div class="tab-content" id="replan" style="display: none;">
+            <h2>Replan Transactions (No Target)</h2>
+            <input type="file" id="replanFile" accept=".csv" multiple>
+            <button onclick="processFile('replan')">Process</button>
+            <button onclick="exportImage('replan')" disabled id="exportReplan">Export</button>
+            <button onclick="copyTable('replan')" disabled id="copyReplan">Copy Table</button>
+            <div id="replanResult"></div>
+        </div>
+
+        <div class="tab-content" id="returns" style="display: none;">
+            <h2>Returns Transactions (Target: 25+)</h2>
+            <input type="file" id="returnsFile" accept=".csv" multiple>
+            <button onclick="processFile('returns')">Process</button>
+            <button onclick="exportImage('returns')" disabled id="exportReturns">Export</button>
+            <button onclick="copyTable('returns')" disabled id="copyReturns">Copy Table</button>
+            <div id="returnsResult"></div>
+        </div>
+
+        <div class="tab-content" id="names" style="display: none;">
+            <h2>User ID to Name Mapping</h2>
+            <div class="name-mapping">
+                <input type="text" id="userId" placeholder="User ID (e.g., UKBOT1-033)">
+                <input type="text" id="userName" placeholder="Name (e.g., John)">
+                <button onclick="addUserMapping()">Add</button>
+                <button onclick="clearMappings()">Clear All</button>
+            </div>
+            <div id="userMappingsList"></div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
